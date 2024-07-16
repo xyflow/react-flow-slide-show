@@ -28,6 +28,8 @@ export function Slide({ data }: NodeProps<SlideData>) {
 
   const moveToNextSlide = useCallback(
     (event: React.MouseEvent, id: string) => {
+      // Prevent the click event from propagating so `onNodeClick` is not
+      // triggered when clicking on the control buttons.
       event.stopPropagation();
       fitView({ nodes: [{ id }], duration: 100 });
     },

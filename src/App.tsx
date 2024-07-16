@@ -1,4 +1,4 @@
-import { KeyboardEventHandler, useCallback, useMemo, useState } from "react";
+import { KeyboardEventHandler, useCallback, useState } from "react";
 import ReactFlow, { useReactFlow, NodeMouseHandler } from "reactflow";
 
 import { Slide, SlideData } from "./Slide";
@@ -27,8 +27,11 @@ export default function App() {
           const direction = event.key.slice(5).toLowerCase() as keyof SlideData;
           const target = slide[direction];
 
+          // Prevent the arrow keys from scrolling the page when React Flow is
+          // only part of a larger application.
+          event.preventDefault();
+
           if (target) {
-            event.preventDefault();
             setCurrentSlide(target);
             fitView({ nodes: [{ id: target }], duration: 100 });
           }

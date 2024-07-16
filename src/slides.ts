@@ -62,10 +62,10 @@ export const slides = Object.fromEntries(
 ) as Record<string, SlideData>;
 
 export const slidesToElements = (
-  start: string,
+  initial: string,
   slides: Record<string, SlideData>,
 ) => {
-  const stack = [{ id: start, position: { x: 0, y: 0 } }];
+  const stack = [{ id: initial, position: { x: 0, y: 0 } }];
   const visited = new Set();
   const nodes: Node<SlideData>[] = [];
   const edges: Edge[] = [];
@@ -123,7 +123,7 @@ export const slidesToElements = (
       edges.push({
         id: `${id}->${data.down}`,
         source: id,
-        target: data.down,
+        target: data.right,
       });
     }
 
@@ -131,5 +131,5 @@ export const slidesToElements = (
     visited.add(id);
   }
 
-  return { start, nodes, edges };
+  return { nodes, edges };
 };
