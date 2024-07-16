@@ -1,18 +1,19 @@
 import { KeyboardEventHandler, useCallback, useMemo, useState } from "react";
 import ReactFlow, { useReactFlow, NodeMouseHandler } from "reactflow";
 
-import { Slide } from "./Slide";
+import { Slide, SlideData } from "./Slide";
 import { slides, slidesToElements } from "./slides";
 
 const nodeTypes = {
   slide: Slide,
 };
 
+const initialSlide = "01";
+const { nodes, edges } = slidesToElements(initialSlide, slides);
+
 export default function App() {
-  const start = "01";
+  const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const { fitView } = useReactFlow();
-  const { nodes, edges } = useMemo(() => slidesToElements(start, slides), []);
-  const [currentSlide, setCurrentSlide] = useState(start);
 
   const handleKeyPress = useCallback<KeyboardEventHandler>(
     (event) => {
@@ -20,40 +21,18 @@ export default function App() {
 
       switch (event.key) {
         case "ArrowLeft":
-          event.preventDefault();
-          if (slide.left) {
-            setCurrentSlide(slide.left);
-            fitView({ nodes: [{ id: slide.left }], duration: 150 });
-          }
-
-          break;
-
         case "ArrowUp":
-          event.preventDefault();
-          if (slide.up) {
-            setCurrentSlide(slide.up);
-            fitView({ nodes: [{ id: slide.up }], duration: 150 });
-          }
-
-          break;
-
         case "ArrowDown":
-          event.preventDefault();
-          if (slide.down) {
-            setCurrentSlide(slide.down);
-            fitView({ nodes: [{ id: slide.down }], duration: 150 });
+        case "ArrowRight": {
+          const direction = event.key.slice(5).toLowerCase() as keyof SlideData;
+          const target = slide[direction];
+
+          if (target) {
+            event.preventDefault();
+            setCurrentSlide(target);
+            fitView({ nodes: [{ id: target }], duration: 100 });
           }
-
-          break;
-
-        case "ArrowRight":
-          event.preventDefault();
-          if (slide.right) {
-            setCurrentSlide(slide.right);
-            fitView({ nodes: [{ id: slide.right }], duration: 150 });
-          }
-
-          break;
+        }
       }
     },
     [fitView, currentSlide],
@@ -63,7 +42,7 @@ export default function App() {
     (_, node) => {
       if (node.id !== currentSlide) {
         setCurrentSlide(node.id);
-        fitView({ nodes: [{ id: node.id }], duration: 150 });
+        fitView({ nodes: [{ id: node.id }], duration: 100 });
       }
     },
     [fitView, currentSlide],
@@ -76,7 +55,7 @@ export default function App() {
       nodesDraggable={false}
       edges={edges}
       fitView
-      fitViewOptions={{ nodes: [{ id: start }] }}
+      fitViewOptions={{ nodes: [{ id: initialSlide }], duration: 100 }}
       minZoom={0.1}
       onKeyDown={handleKeyPress}
       onNodeClick={handleNodeClick}

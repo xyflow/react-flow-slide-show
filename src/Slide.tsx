@@ -12,6 +12,9 @@ export type SlideData = {
 
 export const SLIDE_WIDTH = 1920;
 export const SLIDE_HEIGHT = 1080;
+
+// The padding constant is used when computing the presentation layout. It adds
+// a bit of space between each slide
 export const SLIDE_PADDING = 100;
 
 const style = {
@@ -26,7 +29,7 @@ export function Slide({ data }: NodeProps<SlideData>) {
   const moveToNextSlide = useCallback(
     (event: React.MouseEvent, id: string) => {
       event.stopPropagation();
-      fitView({ nodes: [{ id }], duration: 150 });
+      fitView({ nodes: [{ id }], duration: 100 });
     },
     [fitView],
   );

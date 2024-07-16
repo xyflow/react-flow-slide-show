@@ -1,3 +1,4 @@
+import { Edge, Node } from "reactflow";
 import { SLIDE_WIDTH, SLIDE_HEIGHT, SLIDE_PADDING, SlideData } from "./Slide";
 
 const slide01 = {
@@ -66,8 +67,8 @@ export const slidesToElements = (
 ) => {
   const stack = [{ id: start, position: { x: 0, y: 0 } }];
   const visited = new Set();
-  const nodes = [];
-  const edges = [];
+  const nodes: Node<SlideData>[] = [];
+  const edges: Edge[] = [];
 
   while (stack.length) {
     const { id, position } = stack.pop()!;
