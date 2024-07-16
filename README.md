@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+# React Flow Web Audio Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repo contains a small slide show presentation built with React Flow. Go check
+out the [tutorial](https://reactflow.dev/learn/tutorials/presentations-with-react-flow)
+if you want to build your own from scratch!
 
-Currently, two official plugins are available:
+### Features of the presentation include:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Write slides in markdown.
+- Navigate between slides with arrow keys.
+- Automatically lay out slides in a grid.
 
-## Expanding the ESLint configuration
+### The tutorial covers React Flow topics including:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Setting up a React Flow project from scratch
+- Writing your own layouting algorithm
+- Using events on the `<ReactFlow />` component to add global interactivity.
 
-- Configure the top-level `parserOptions` property like this:
+## Development
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+This app was built using [Vite](https://vitejs.dev/) for development.
+
+### Installation
+
+Before you start, you need to install the dependencies:
+
+```sh
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Spin up a dev server
+
+```sh
+npm run dev
+```
+
+### Build
+
+```sh
+npm run build
+```
