@@ -4,6 +4,8 @@ This repo contains a small slide show presentation built with React Flow. Go che
 out the [tutorial](https://reactflow.dev/learn/tutorials/presentations-with-react-flow)
 if you want to build your own from scratch!
 
+![A screencapture of someone clicking arrow keys on a series of slides, which lets them navigate up, down, left, and right between them](slideshow.gif)
+
 ### Features of the presentation include:
 
 - Write slides in markdown.
